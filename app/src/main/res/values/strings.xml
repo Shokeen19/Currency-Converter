@@ -3,4 +3,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="convert_btn">Convert</string>
+    <string name="et_value">1</string>
 </resources>
