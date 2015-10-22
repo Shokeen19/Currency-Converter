@@ -1,0 +1,39 @@
+<resources>
+
+    <string-array name="currency_type">
+        <item>EUR</item>
+        <item>GBP</item>
+        <item>USD</item>
+        <item>JPY</item>
+        <item>AUD</item>
+        <item>CAD</item>
+    </string-array>
+
+    <string-array name="default_values">
+        <item>1.0 Euros</item>
+        <item>0.7289 Pounds</item>
+        <item>1.12974 Dollars</item>
+        <item>136.156 Yen</item>
+        <item>1.57155 Austrailian Dollars</item>
+        <item>1.49167 Canadian Dollars</item>
+    </string-array>
+
+    <array name="currency_values">
+        <item>1.0</item>
+        <item>0.7289</item>
+        <item>1.12974</item>
+        <item>136.156</item>
+        <item>1.57155</item>
+        <item>1.49167</item>
+    </array>
+
+    <string-array name="currency_names">
+        <item>Euros</item>
+        <item>Pounds</item>
+        <item>Dollars</item>
+        <item>Yen</item>
+        <item>Austrailian Dollars</item>
+        <item>Canadian Dollars</item>
+    </string-array>
+
+</resources>

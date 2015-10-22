@@ -19,8 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:entries="@array/currency_type"
-            ></Spinner>
+            />
 
         <EditText
             android:id="@+id/cc_et"
@@ -45,7 +44,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cc_lv"
-        android:entries="@array/default_values"
-        ></ListView>
+        />
+
+    <TextView
+        android:id="@+id/tv_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 
 </LinearLayout>
