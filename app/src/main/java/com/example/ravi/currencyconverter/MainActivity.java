@@ -4,18 +4,15 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -25,15 +22,14 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<CharSequence> spinnerAdaptor;
     private ArrayAdapter<String> listViewAdaptor;
     private ArrayList<String> listValues;
-    private TypedArray currencyValues, currencyNames, defaultValues;
+    private TypedArray currencyValues, currencyNames;
     private Spinner spinner;
     private ListView listView;
     private Button btnConvert;
     private EditText editText;
     private double etValue;
     private int index;
-
-    private TextView tv_test;
+    private String et_value, btnText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +43,18 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.cc_lv);
         btnConvert = (Button) findViewById(R.id.convert_btn);
         editText = (EditText) findViewById(R.id.cc_et);
-        tv_test = (TextView) findViewById(R.id.tv_test);
 
         //get values from array.xml
         currencyValues = resources.obtainTypedArray(R.array.currency_values);
         currencyNames = resources.obtainTypedArray(R.array.currency_names);
-        defaultValues = resources.obtainTypedArray(R.array.default_values);
+
+        //get values from Strings.xml
+        et_value = resources.getString(R.string.et_value);
+        btnText = resources.getString(R.string.convert_btn);
+
+        //Set button text and edit text
+        btnConvert.setText(btnText);
+        editText.setText(et_value);
 
 
         //Creating adaptor for spinner and getting values and views from XML files.
@@ -69,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 index = position;
-               // spinnerItem = (String)parent.getItemAtPosition(position);
             }
 
             @Override
@@ -80,13 +81,10 @@ public class MainActivity extends AppCompatActivity {
 
         //setting default content to the list view
         listValues = new ArrayList<String>();
-        listValues.add(defaultValues.getString(0));
-        listValues.add(defaultValues.getString(1));
-        listValues.add(defaultValues.getString(2));
-        listValues.add(defaultValues.getString(3));
-        listValues.add(defaultValues.getString(4));
-        listValues.add(defaultValues.getString(5));
-
+        for(int i=0;i<currencyNames.length();i++)
+        {
+            listValues.add(currencyValues.getString(i)+ " "+currencyNames.getString(i));
+        }
         listViewAdaptor = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listValues);
         listView.setAdapter(listViewAdaptor);
 
@@ -94,16 +92,16 @@ public class MainActivity extends AppCompatActivity {
         btnConvert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //get value from EditText
                 etValue = Double.parseDouble(editText.getText().toString());
-                String testText = "Selected Currency Type : "+currencyNames.getString(index)+", Entered value is : "+etValue+" and" +
-                        " currency value is : "+currencyValues.getString(index);
 
-                tv_test.setText(testText);
                 double new_values;
+                //set format for Decimal for double values
                 DecimalFormat df = new DecimalFormat("#.#####");
                 ArrayList<String> new_list = new ArrayList<String>();
 
                 String listItems;
+                //adding new converted value to the Array List
                 for(int i=0;i<currencyValues.length();i++)
                 {
                     new_values = (currencyValues.getFloat(i,0)/currencyValues.getFloat(index,0))*etValue;
@@ -113,13 +111,9 @@ public class MainActivity extends AppCompatActivity {
                     setListViewItems(new_list);
             }
         });
-
-
-
-
-
     }
 
+    //Setting the converted values to the list view
     public void setListViewItems(ArrayList<String> arrayList)
     {
         ArrayAdapter<String> new_adaptor;

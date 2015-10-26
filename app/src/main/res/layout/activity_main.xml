@@ -26,7 +26,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/et_value"
             android:inputType="numberDecimal"
 
             />
@@ -37,19 +36,12 @@
         android:id="@+id/convert_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/convert_btn"
         />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cc_lv"
-        />
-
-    <TextView
-        android:id="@+id/tv_test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         />
 
 </LinearLayout>
